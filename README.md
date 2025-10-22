@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# National Barangay Management Infromation System - NBMIS
 
-## Getting Started
+## Overview & requirements (interpreting your request)
 
-First, run the development server:
+- Two account types: admin and resident (people).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+  - Admin can:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    - register residents (create an ID number per resident),
+    - edit resident personal data (address, birth date, family members, etc.),
+    - create violations tied to a resident (with complaint details),
+    - record/validate work/tax-related items (e.g., tax assessments, payments),
+    - view lists and search residents, violations, complaints.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+  - Resident can:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    - login using the ID number (issued by admin) + password,
+    - view their profile, family, violation history, tax status,
+    - maybe file complaints (optional — included in API).
+    - Authentication rule you specified: residents log in using ID number. Admin accounts created separately.
+    - Data must be auditable and role-protected.
 
-## Learn More
+## Suggested tech stack
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Frontend: Next.js (App Router) + React + Tailwind CSS
+- Backend & ORM: Prisma + MySQL
+- Auth: Custom JWT + httpOnly cookie or NextAuth (Credentials provider). Example uses custom bcrypt + JWT for clarity.
+- File storage (optional): local or S3 for attachments.
+- Optional: Prisma Studio for quick admin inspection.
